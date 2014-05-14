@@ -2,8 +2,8 @@ module Spree
   class User < ActiveRecord::Base
     include Core::UserBanners
 
-    devise :database_authenticatable, :token_authenticatable, :registerable, :recoverable,
-           :rememberable, :trackable, :validatable, :encryptable, :encryptor => 'authlogic_sha512'
+    devise :database_authenticatable, :lockable,  :token_authenticatable, :registerable, :recoverable,
+      :rememberable, :timeoutable, :trackable, :validatable
 
     has_many :orders
     belongs_to :ship_address, :foreign_key => 'ship_address_id', :class_name => 'Spree::Address'
